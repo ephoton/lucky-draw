@@ -21,11 +21,13 @@ const LotteryMessages = {
   congratulations: '恭喜！'
 };
 
+const IntervalStoped = -1;
+
 /**
  * @export
  * @class LuckyDraw
  */
-export class LuckyDraw {
+class LuckyDraw {
   private options: LuckyDrawOptionsInfo = {};
   private luckyIds: Set<string>;
   private interval: number;
@@ -40,6 +42,7 @@ export class LuckyDraw {
    */
   constructor(luckyIds: string[], options?: LuckyDrawOptionsInfo) {
     this.luckyIds = new Set(luckyIds);
+    this.interval = IntervalStoped;
 
     Object.keys(DefaultLuckyDrawOptions).map(optionKey => {
       this.options[optionKey] = options && options[optionKey] || DefaultLuckyDrawOptions[optionKey];
@@ -55,6 +58,10 @@ export class LuckyDraw {
    * @memberOf LuckyDraw
    */
   start(callback: (luckyIds: string | string[], reason?: string) => void, count?: number) {
+    if (this.interval !== IntervalStoped) {
+      return;
+    }
+
     this.interval = setInterval(() => {
       let luckyIds: string | string[];
       let size = this.luckyIds.size;
@@ -75,7 +82,16 @@ export class LuckyDraw {
    * @memberOf LuckyDraw
    */
   stop(): void {
+    console.log("interval before stop: ", this.interval);
+    let interval = this.interval;
+
+    if (interval === IntervalStoped) {
+      return;
+    }
+
     clearInterval(this.interval);
+    this.interval = IntervalStoped;
+    console.log("interval after stop: ", this.interval);
   }
 
   /**
@@ -86,7 +102,7 @@ export class LuckyDraw {
    * 
    * @memberOf LuckyDraw
    */
-  getLuckIds(count?: number): string[] | string {
+  private getLuckIds(count?: number): string[] | string {
     let luckyIdSet: Set<string> = new Set();
     let size = this.luckyIds.size;
     let luckyIds = Array.from(this.luckyIds);
@@ -112,3 +128,5 @@ export class LuckyDraw {
     return Array.from(luckyIdSet);
   }
 }
+
+exports = LuckyDraw;

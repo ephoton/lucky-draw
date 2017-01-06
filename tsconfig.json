@@ -15,17 +15,18 @@
         "noImplicitReturns": true,
         "sourceMap": true,
         "strictNullChecks": true,
-        "target": "ES5",
-        "outDir": "dist",
-        "sourceRoot": "src"
+        "target": "ES6",
+        "outDir": "build"
     },
     "exclude": [
         "dist",
         "jsx",
         "node_modules",
-        "src/less",
         "static",
-        "test",
         "tools"
+    ],
+    "filesGlob": [
+        "typings",
+        "src"
     ]
 }
