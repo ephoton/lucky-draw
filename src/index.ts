@@ -1,5 +1,4 @@
 
-// import * as Fetch from 'isomorphic-fetch';
 
 export interface LuckyDrawOptionsInfo {
   [key: string]: number | boolean | undefined;
