@@ -1,0 +1,40 @@
+.ali100 {
+  
+}
+
+h1 {
+  margin-top: 75px;
+}
+
+.ali100 button {
+  width: 200px;
+  height: 50px;
+  margin: 0 auto;
+  display: block;
+  height: 65px;
+  font-size: 2.5em;
+  letter-spacing: .25em;
+  float: left;
+}
+
+.draw-start {
+  margin-right: 15px !important;
+}
+
+.draw-stop {
+  margin-left: 15px !important;
+}
+
+.draw-result {
+  font-size: 150px;
+  text-align: center;
+  margin-top: 150px;
+  letter-spacing: .5em;
+  height: 375px
+}
+
+.ali100 div {
+  margin: 0 auto;
+  display: table;
+}
+
