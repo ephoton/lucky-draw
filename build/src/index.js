@@ -17,6 +17,7 @@ class LuckyDraw {
     constructor(luckyIds, options) {
         this.options = {};
         this.luckyIds = new Set(luckyIds);
+        this.drewIds = new Set();
         this.interval = IntervalStoped;
         Object.keys(DefaultLuckyDrawOptions).map(optionKey => {
             this.options[optionKey] = options && options[optionKey] || DefaultLuckyDrawOptions[optionKey];
@@ -34,6 +35,7 @@ class LuckyDraw {
                 return callback('', LotteryMessages.luckyIdEmpty);
             }
             luckyIds = this.getLuckIds(count);
+            this.drewIds = new Set(luckyIds);
             callback(luckyIds, luckyIds.length === count ? LotteryMessages.congratulations : LotteryMessages.luckyIdEmpty);
         }, this.options.interval);
     }
@@ -43,6 +45,12 @@ class LuckyDraw {
         if (interval === IntervalStoped) {
             return;
         }
+        if (this.options.enableTranshBin) {
+            Array.from(this.drewIds).map(item => {
+                this.luckyIds.delete(item);
+            });
+        }
+        console.log('after delete: ', this.luckyIds);
         clearInterval(this.interval);
         this.interval = IntervalStoped;
         console.log("interval after stop: ", this.interval);
@@ -69,5 +77,4 @@ class LuckyDraw {
         return Array.from(luckyIdSet);
     }
 }
-exports = LuckyDraw;
 //# sourceMappingURL=index.js.map

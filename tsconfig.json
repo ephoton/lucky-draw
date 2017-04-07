@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
-        "allowJs": false","
-        "allowUnreachableCode": false",""
-        "allowUnusedLabels": false","
-        "diagnostics": true",""
-        "experimentalDecorators": true","
-        "forceConsistentCasingInFileNames": true",""
-        "jsx": "react"","
-        "module": "commonjs"",""
-        "pretty": true","
+        "allowJs": false,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "diagnostics": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "module": "commonjs",
+        "pretty": true,
         "removeComments": true,
         "noEmitOnError": true,
         "noImplicitAny": true,
