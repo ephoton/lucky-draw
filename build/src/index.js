@@ -45,9 +45,11 @@ class LuckyDraw {
         if (interval === IntervalStoped) {
             return;
         }
-        Array.from(this.drewIds).map(item => {
-            this.luckyIds.delete(item);
-        });
+        if (this.options.enableTranshBin) {
+            Array.from(this.drewIds).map(item => {
+                this.luckyIds.delete(item);
+            });
+        }
         console.log('after delete: ', this.luckyIds);
         clearInterval(this.interval);
         this.interval = IntervalStoped;
