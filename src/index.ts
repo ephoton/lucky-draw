@@ -72,6 +72,7 @@ class LuckyDraw {
       }
 
       luckyIds = this.getLuckIds(count);
+      console.log('after start: ', luckyIds);
       callback(luckyIds, luckyIds.length === count ? LotteryMessages.congratulations : LotteryMessages.luckyIdEmpty);
     }, this.options.interval);
   }

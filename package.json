@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "build/index.js",
-  // "typings": "build/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "mocha"
@@ -11,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@types/lodash": "^4.14.61",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4"
   }
