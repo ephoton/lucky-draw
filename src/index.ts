@@ -31,6 +31,7 @@ class LuckyDraw {
   private options: LuckyDrawOptionsInfo = {};
   private luckyIds: Set<string>;
   private interval: number;
+  private drewIds: Set<string>;
 
   /**
    * Creates an instance of LuckyDraw.
@@ -42,6 +43,7 @@ class LuckyDraw {
    */
   constructor(luckyIds: string[], options?: LuckyDrawOptionsInfo) {
     this.luckyIds = new Set(luckyIds);
+    this.drewIds = new Set();
     this.interval = IntervalStoped;
 
     Object.keys(DefaultLuckyDrawOptions).map(optionKey => {
@@ -72,7 +74,7 @@ class LuckyDraw {
       }
 
       luckyIds = this.getLuckIds(count);
-      console.log('after start: ', luckyIds);
+      this.drewIds = new Set(luckyIds);
       callback(luckyIds, luckyIds.length === count ? LotteryMessages.congratulations : LotteryMessages.luckyIdEmpty);
     }, this.options.interval);
   }
@@ -90,6 +92,11 @@ class LuckyDraw {
       return;
     }
 
+    Array.from(this.drewIds).map(item => {
+      this.luckyIds.delete(item);
+    });
+
+    console.log('after delete: ', this.luckyIds);
     clearInterval(this.interval);
     this.interval = IntervalStoped;
     console.log("interval after stop: ", this.interval);
@@ -115,7 +122,7 @@ class LuckyDraw {
       luckyIdSet.add(luckyId);
     } else {
 
-      for(let i = 0; luckyIdSet.size < count; i ++) {
+      for (let i = 0; luckyIdSet.size < count; i ++) {
         if (!this.luckyIds.size) {
           break;
         }
@@ -129,5 +136,3 @@ class LuckyDraw {
     return Array.from(luckyIdSet);
   }
 }
-
-exports = LuckyDraw;
